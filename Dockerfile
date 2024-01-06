@@ -12,4 +12,4 @@ WORKDIR /home/container
 COPY ./Caddyfile.base /etc/caddy/Caddyfile
 COPY ./entrypoint.sh /entrypoint.sh
 
-CMD ["/bin/bash", "/entrypoint.sh"]
+CMD ["/bin/ash", "/entrypoint.sh"]
