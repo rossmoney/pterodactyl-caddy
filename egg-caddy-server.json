@@ -32,10 +32,40 @@
             "name": "SERVER_NAME",
             "description": "Server name",
             "env_variable": "SERVER_NAME",
-            "default_value": "http:\/\/localhos",
+            "default_value": "http:\/\/",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:50",
+            "field_type": "text"
+        },
+        {
+            "name": "VIRTUAL_HOST",
+            "description": "",
+            "env_variable": "VIRTUAL_HOST",
+            "default_value": "",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "string|max:50",
+            "field_type": "text"
+        },
+        {
+            "name": "VIRTUAL_PORT",
+            "description": "",
+            "env_variable": "VIRTUAL_PORT",
+            "default_value": "",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "LETSENCRYPT_HOST",
+            "description": "",
+            "env_variable": "LETSENCRYPT_HOST",
+            "default_value": "",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "string|max:50",
             "field_type": "text"
         }
     ]
