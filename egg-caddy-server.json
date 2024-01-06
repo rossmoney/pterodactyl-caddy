@@ -37,16 +37,6 @@
             "user_editable": true,
             "rules": "required|string|max:50",
             "field_type": "text"
-        },
-        {
-            "name": "RESOLVE_ROOT_SYMLINK",
-            "description": "Required for Laravel",
-            "env_variable": "RESOLVE_ROOT_SYMLINK",
-            "default_value": "resolve_root_symlink",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "string|max:20",
-            "field_type": "text"
         }
     ]
 }
