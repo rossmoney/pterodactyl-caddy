@@ -5,15 +5,15 @@
         "update_url": null
     },
     "exported_at": "2023-12-12T16:53:06+00:00",
-    "name": "Frankenphp PHP App Server",
+    "name": "Caddy Server",
     "author": "unknown@unknown.com",
     "description": null,
     "features": null,
     "docker_images": {
-        "ghcr.io\/rossmoney\/pterodactyl-frankenphp:main": "ghcr.io\/rossmoney\/pterodactyl-frankenphp:main"
+        "ghcr.io\/rossmoney\/pterodactyl-caddy:main": "ghcr.io\/rossmoney\/pterodactyl-caddy:main"
     },
     "file_denylist": [],
-    "startup": ".\/frankenphp-linux-x86_64 run --config \/home\/container\/Caddyfile --adapter caddyfile",
+    "startup": "caddy run --config \/home\/container\/Caddyfile --adapter caddyfile",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"serving initial configuration\"\r\n}",
@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# Frankenphp Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\nset -x\r\n\r\necho -e \"installing dependencies\"\r\napt-get -y update\r\napt-get -y install curl wget\r\n\r\n## add user\r\necho -e \"adding container user\"\r\nuseradd -d \/home\/container -m container -s \/bin\/bash\r\n\r\n## own server to container user\r\nchown container: \/mnt\/server\/\r\n\r\n## run install script as user\r\necho -e \"getting Caddyfile\"\r\nif [ -f \/mnt\/server\/Caddyfile ]; then\r\n    echo -e \"moving current config for install\"\r\n    mv \/mnt\/server\/Caddyfile \/mnt\/server\/Caddyfile.old\r\n    runuser -l container -c 'curl https:\/\/raw.githubusercontent.com\/rossmoney\/pterodactyl-frankenphp\/main\/Caddyfile.base > \/mnt\/server\/Caddyfile'\r\nelse\r\n    runuser -l container -c 'curl https:\/\/raw.githubusercontent.com\/rossmoney\/pterodactyl-frankenphp\/main\/Caddyfile.base > \/mnt\/server\/Caddyfile'\r\nfi\r\n\r\nrm \/mnt\/server\/frankenphp-linux-x86_64\r\nwget -O \/mnt\/server\/frankenphp-linux-x86_64 https:\/\/github.com\/dunglas\/frankenphp\/releases\/download\/v1.0.0\/frankenphp-linux-x86_64\r\nchmod +x \/mnt\/server\/frankenphp-linux-x86_64\r\n\r\nrunuser -l container -c 'mkdir -p \/mnt\/server\/caddy'\r\nrunuser -l container -c 'mkdir -p \/mnt\/server\/caddy\/config'\r\nrunuser -l container -c 'mkdir -p \/mnt\/server\/caddy\/data'\r\nrunuser -l container -c 'mkdir -p \/mnt\/server\/caddy\/config\/caddy'\r\nrunuser -l container -c 'mkdir -p \/mnt\/server\/caddy\/data\/caddy'\r\nrunuser -l container -c 'mkdir -p \/mnt\/server\/public'\r\n\r\nrunuser -l container -c 'curl https:\/\/raw.githubusercontent.com\/rossmoney\/pterodactyl-frankenphp\/main\/Caddyfile > \/mnt\/server\/Caddyfile.custom'\r\n\r\necho -e \"install complete\"\r\n\r\nexit",
+            "script": "#!\/bin\/bash\r\n# Caddy Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\nset -x\r\n\r\necho -e \"installing dependencies\"\r\napt-get -y update\r\napt-get -y install curl wget\r\n\r\n## add user\r\necho -e \"adding container user\"\r\nuseradd -d \/home\/container -m container -s \/bin\/bash\r\n\r\n## own server to container user\r\nchown container: \/mnt\/server\/\r\n\r\n## run install script as user\r\necho -e \"getting Caddyfile\"\r\nif [ -f \/mnt\/server\/Caddyfile ]; then\r\n    echo -e \"moving current config for install\"\r\n    mv \/mnt\/server\/Caddyfile \/mnt\/server\/Caddyfile.old\r\n    runuser -l container -c 'curl https:\/\/raw.githubusercontent.com\/rossmoney\/pterodactyl-caddy\/main\/Caddyfile.base > \/mnt\/server\/Caddyfile'\r\nelse\r\n    runuser -l container -c 'curl https:\/\/raw.githubusercontent.com\/rossmoney\/pterodactyl-caddy\/main\/Caddyfile.base > \/mnt\/server\/Caddyfile'\r\nfi\r\n\r\nrunuser -l container -c 'mkdir -p \/mnt\/server\/caddy'\r\nrunuser -l container -c 'mkdir -p \/mnt\/server\/caddy\/config'\r\nrunuser -l container -c 'mkdir -p \/mnt\/server\/caddy\/data'\r\nrunuser -l container -c 'mkdir -p \/mnt\/server\/caddy\/config\/caddy'\r\nrunuser -l container -c 'mkdir -p \/mnt\/server\/caddy\/data\/caddy'\r\nrunuser -l container -c 'mkdir -p \/mnt\/server\/public'\r\n\r\nrunuser -l container -c 'curl https:\/\/raw.githubusercontent.com\/rossmoney\/pterodactyl-caddy\/main\/Caddyfile > \/mnt\/server\/Caddyfile.custom'\r\n\r\necho -e \"install complete\"\r\n\r\nexit",
             "container": "ubuntu:latest",
             "entrypoint": "bash"
         }
