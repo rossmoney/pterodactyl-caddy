@@ -13,7 +13,7 @@
         "ghcr.io\/rossmoney\/pterodactyl-caddy:main": "ghcr.io\/rossmoney\/pterodactyl-caddy:main"
     },
     "file_denylist": [],
-    "startup": "caddy run --config \/home\/container\/Caddyfile --adapter caddyfile",
+    "startup": "./caddy run --config \/home\/container\/Caddyfile --adapter caddyfile",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"serving initial configuration\"\r\n}",
