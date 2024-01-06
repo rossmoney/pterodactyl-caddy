@@ -32,7 +32,7 @@
             "name": "SERVER_NAME",
             "description": "Server name",
             "env_variable": "SERVER_NAME",
-            "default_value": "http:\/\/localhost",
+            "default_value": "http:\/\/localhos",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:50",
