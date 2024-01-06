@@ -1,10 +1,10 @@
 #!/bin/ash
 sleep 1
 
-cp /usr/local/bin/caddy /home/container/caddy
+cp /usr/bin/caddy /home/container/caddyserver
 
 cd /home/container
-chmod +x ./caddy
+chmod +x ./caddyserver
 
 # Replace Startup Variables
 MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
